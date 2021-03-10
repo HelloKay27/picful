@@ -1,27 +1,16 @@
 language: node_js
 node_js:
-  - 14 # uses version 14
-# services:
-# - postgresql # starts up postgres
-# addons:
-# postgresql: "9.6" # highest available postgres version on Travis
-dist: trusty # uses trusty environment
-sudo: false # when on trusty, uses Docker containers for speed
+  - 14
+dist: trusty
+sudo: false
 notifications:
   email:
-    on_success: change # default: change (only when going from broken to fixed)
-    on_failure: always # default: always (which is annoying, as it should be)
+    on_success: change
+    on_failure: always
 install:
-  - npm ci # faster, goes only from package-lock
-# before_script:
-# - psql -c 'create database "deployment-exercise-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
-
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE
+  - npm ci
+deploy:
+  provider: heroku
+  app: mindfulnessmood
+  api_key:
+    secure: edWZSRO1+AlQQkNlQCxCbWUuNLeuKvkIN/PyFfKTe4q7oUZISWNGBn/2+s3yKAosoHq9pS8mIeMH/MgHq1vrH0hwlnq/OW6vMDpjxHD3MqnGG9lio/iy1gBnBvvnYNq2IVx2+gElPPG2SEmkgVZt4bp+uIF9kkHKtSh0IoPNi/p8+wOAnzrqCWjNlLCIPAVwXoLDvUovna8rlEMYE7tInHkFIBlcLE/8dPOODp/AgGAYYvELU3hFMZA5JXdVBZtQduhZxXtyS676uD9mA6xdZ3Su+WEWMgfSikIN9RoXXPkexwacEkf06QAhG1kXYK+HuRrL1Z3L5EGj9egxB7xsuVPle+3JFEM5LnxvXXGpmGV/J1oPY3gV5bMHqUAoXIQjjzQxx7HSRTLPIC+b+eeg/IpAStSwHmNAR74o5pW6ff2ivt/M9DibIW2DltDXGqmdMMxUUhZl4RYivd1c/QPET4ySCRQlOhulIGt7jmGeasvxn+eCaI2tGIghYdwewDDPaSbyw5L+lh4pkB7ZA42H4xsLqszlOKpRwvg/9v6NxX91V9WwaZ/xLcP9+tGoUqUPhla6bq2j1juGmRfWHK18R9h6VhHoI81Jf4ER3vTPX1bv9NYBVpmOfz5siHtW32r+RavpkK/3r5QaKNyJP66lYQZXKP0DVki32ue9K1RZAug=
