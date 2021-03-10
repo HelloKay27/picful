@@ -11,7 +11,8 @@ install:
   - npm ci
 deploy:
   on:
-    all_branches: true
+    main
+    # all_branches: true
   provider: heroku
   app: mindfulnessmood
   api_key:
