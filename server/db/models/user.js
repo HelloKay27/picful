@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const db = require("../db");
+const db = require("../database");
 
 //User Model
 const User = db.define("user", {
@@ -23,6 +23,7 @@ const User = db.define("user", {
     allowNull: false,
     validate: {
       notEmpty: true,
+      isEmail: true,
     },
   },
   password: {
