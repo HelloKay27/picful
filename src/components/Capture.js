@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import DatePicker from "react-datepicker";
 import { connect } from "react-redux";
 import { addLog } from "../store/logs";

@@ -1,16 +1,31 @@
 const express = require("express");
-const cors = require("cors");
 const path = require("path");
-// const volleyball = require("volleyball");
+const session = require("express-session");
+const passport = require("passport");
+const { User } = require("./db/models");
 
 const app = express();
 
-// logging middleware
-// Only use logging middleware when not running tests
-// const debug = process.env.NODE_ENV === "test";
-// app.use(volleyball.custom({ debug }));
-app.use(cors());
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findByPk(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
 
+app.use(
+  session({
+    secret: "picful",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 // body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,9 +35,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use("/api", require("./api")); // include our routes!
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../public/index.html"));
-// }); // Send index.html for any other requests
+app.use("/auth", require("./auth"));
 
 // error handling middleware
 app.use((err, req, res, next) => {

@@ -8,15 +8,18 @@ const UserPage = ({ logs, getLogs }) => {
     (a, b) => new Date(b.date) - new Date(a.date)
   );
   return (
-    <div>
-      {sortedLogs.map((log) => {
+    <div className='logs'>
+      {sortedLogs.map((log, idx) => {
         const date = new Date(log.date);
         return (
-          <div key={log.id}>
+          <div
+            key={log.id}
+            data-aos={idx % 2 ? "fade-up-right" : "fade-up-left"}
+          >
             <p>{`${
               date.getMonth() + 1
             }/${date.getDate()}/${date.getFullYear()}`}</p>
-            <img alt={log.description} src={log.imageUrl} height={100} />
+            <img alt={log.description} src={log.imageUrl} height={400} />
             <p>{log.description}</p>
           </div>
         );

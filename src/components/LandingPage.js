@@ -1,22 +1,42 @@
 import React from "react";
 import Capture from "./Capture";
 import UserPage from "./UserPage";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import { connect } from "react-redux";
+import { me } from "../store/user";
 
-const LandingPage = () => {
+const LandingPage = ({ user }) => {
   return (
     <div className='home-page'>
       <h4>picful</h4>
       <p>
-        because theres always one moment in your
-        <br /> day worth capturing
+        <small>
+          because there's always one moment in your
+          <br /> day worth capturing
+        </small>
       </p>
-      <button>login</button>
-      <br />
-      <button>sign up</button>
-      <Capture />
-      <UserPage />
+      {user.id ? (
+        <>
+          <Capture />
+          <UserPage />
+        </>
+      ) : (
+        <>
+          <Login />
+          <SignUp />
+        </>
+      )}
     </div>
   );
 };
 
-export default LandingPage;
+const mapState = (state) => ({
+  user: state.user,
+});
+
+const mapDispatch = (dispatch) => ({
+  me: () => dispatch(me()),
+});
+
+export default connect(mapState, mapDispatch)(LandingPage);

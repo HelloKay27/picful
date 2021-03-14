@@ -12,11 +12,11 @@ const upload = multer({
 router.post("/", upload.single("file"), async (req, res, next) => {
   try {
     const log = await Log.create({
-      imageUrl: "//localhost:4000/uploads/" + req.file.filename,
+      imageUrl: "/uploads/" + req.file.filename,
       date: req.body.date,
       description: req.body.description,
     });
-    console.log(req.body);
+    await req.user.addLog(log);
     res.send(log);
   } catch (error) {
     next(error);

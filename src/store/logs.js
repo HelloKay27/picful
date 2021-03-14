@@ -18,7 +18,7 @@ const addedLog = (log) => ({
 export const getLogs = () => {
   return async (dispatch) => {
     try {
-      const { data: logs } = await axios.get("//localhost:4000/api/logs");
+      const { data: logs } = await axios.get("/api/logs");
       dispatch(gotLogs(logs));
     } catch (error) {
       console.error(error);
@@ -29,10 +29,7 @@ export const getLogs = () => {
 export const addLog = (fd) => {
   return async (dispatch) => {
     try {
-      const { data: log } = await axios.post(
-        "//localhost:4000/api/capture",
-        fd
-      );
+      const { data: log } = await axios.post("/api/capture", fd);
       dispatch(addedLog(log));
     } catch (error) {
       console.error(error);
