@@ -1,4 +1,4 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const createProxyMiddleware = require("http-proxy-middleware");
 
 module.exports = (app) => {
   app.use(
@@ -7,6 +7,7 @@ module.exports = (app) => {
       target: "http://localhost:4000",
       secure: false,
       changeOrigin: true,
+      logLevel: "debug",
     })
   );
   app.use(
@@ -15,6 +16,7 @@ module.exports = (app) => {
       target: "http://localhost:4000",
       secure: false,
       changeOrigin: true,
+      logLevel: "debug",
     })
   );
 };
