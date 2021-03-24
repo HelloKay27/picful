@@ -39,6 +39,42 @@ const seed = async () => {
         description: "Stumbling across a farmers market in brooklyn",
         userId: kay.id,
       },
+      {
+        date: "2020-08-10",
+        imageUrl: "/seedpics/allblack.jpeg",
+        description: "Make it simple, but significant",
+        userId: kay.id,
+      },
+      {
+        date: "2021-03-12",
+        imageUrl: "/seedpics/carnations.jpeg",
+        description: "Bloom",
+        userId: kay.id,
+      },
+      {
+        date: "2020-05-12",
+        imageUrl: "/seedpics/ribbons.jpeg",
+        description: "Live colorfully",
+        userId: kay.id,
+      },
+      {
+        date: "2019-07-30",
+        imageUrl: "/seedpics/expresso.jpeg",
+        description: "",
+        userId: kay.id,
+      },
+      {
+        date: "2019-08-23",
+        imageUrl: "/seedpics/sunset.jpeg",
+        description: "Brooklyn",
+        userId: kay.id,
+      },
+      {
+        date: "2019-10-4",
+        imageUrl: "/seedpics/mangomango.jpeg",
+        description: "Mango Mango",
+        userId: kay.id,
+      },
     ];
     await Log.bulkCreate(logs);
     console.log(green("Seeded logs!"));
