@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+//POST /auth/login
 const { User } = require("../db/models");
 router.post("/login", async (req, res, next) => {
   try {
@@ -15,6 +16,7 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+//POST /auth/signup
 router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
@@ -24,6 +26,7 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
+//GET /auth/me
 router.get("/me", (req, res) => res.send(req.user));
 
 module.exports = router;
