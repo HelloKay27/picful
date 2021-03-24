@@ -5,8 +5,13 @@ const passport = require("passport");
 const { User } = require("./db/models");
 
 const app = express();
-
+// passport.serilizeUser - determines which data from the user object
+// should be stored in the session
+// req.session.passport.user = {id: ''}
 passport.serializeUser((user, done) => done(null, user.id));
+// passport.deserializeUser - retrieves object with corresponding key
+// of the user object (id) - matched with database
+// fetched object is attached to req.user
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findByPk(id);
@@ -33,7 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 // static middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.use("/api", require("./api")); // include our routes!
+app.use("/api", require("./api"));
 
 app.use("/auth", require("./auth"));
 
