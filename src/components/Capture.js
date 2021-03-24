@@ -17,16 +17,27 @@ const Capture = ({ addLog }) => {
           fd.append("date", logDate);
           fd.append("description", description);
           addLog(fd);
+          setFile(null);
+          setDescription("");
+          setLogDate(new Date());
         }}
       >
-        <label>Date</label>
+        <label>
+          <small>Date</small>
+        </label>
+        <br />
         <DatePicker selected={logDate} onChange={(date) => setLogDate(date)} />
         <br />
-        <label>Upload your photo</label>
+        <label>
+          <small>Upload your photo</small>
+        </label>
         <br />
         <input type='file' onChange={(e) => setFile(e.target.files[0])} />
         <br />
-        <label>Description</label>
+        <label>
+          <small>Description</small>
+        </label>
+        <br />
         <input
           name='description'
           type='text'
