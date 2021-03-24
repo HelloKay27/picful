@@ -15,12 +15,15 @@ const UserPage = ({ logs, getLogs }) => {
           <div
             key={log.id}
             data-aos={idx % 2 ? "fade-up-right" : "fade-up-left"}
+            data-aos-duration='1800'
           >
             <p>{`${
               date.getMonth() + 1
             }/${date.getDate()}/${date.getFullYear()}`}</p>
             <img alt={log.description} src={log.imageUrl} height={400} />
-            <p>{log.description}</p>
+            <p>
+              <small>{log.description}</small>
+            </p>
           </div>
         );
       })}
